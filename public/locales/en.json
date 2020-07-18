@@ -119,13 +119,22 @@
     "profile": {
         "userProfile": "User profile",
         "displayName": "Display name",
-        "displayNameInfo": "This name will be shown publicly on notes you created or edited.",
+      "displayNameInfo": "This name will be shown publicly on notes you created or edited.",
+      "emailAddress": "Email address",
+      "emailAddressInfo": "Your email address is used to fetch your profile image from Libravatar.",
         "changePassword": {
             "title": "Change password",
             "old": "Old password",
             "new": "New password",
             "newAgain": "New password again",
             "info": "Your new password should contain at least 6 characters."
+        },
+        "apiTokens": {
+            "title": "Access tokens",
+            "info": "You can use access tokens to authorize external applications to your account.",
+            "noTokens": "You don't have any access tokens created yet.",
+            "create": "Create new access token",
+            "revoke": "Revoke access token"
         },
         "accountManagement": "Account management",
         "deleteUser": "Delete user",

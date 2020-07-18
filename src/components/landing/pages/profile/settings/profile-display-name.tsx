@@ -5,36 +5,31 @@ import { useSelector } from 'react-redux'
 import { updateDisplayName } from '../../../../../api/me'
 import { ApplicationState } from '../../../../../redux'
 import { getAndSetUser } from '../../../../../utils/apiUtils'
+import { ShowIf } from '../../../../common/show-if/show-if'
 
 export const ProfileDisplayName: React.FC = () => {
   const regexInvalidDisplayName = /^\s*$/
+  // eslint-disable-next-line no-control-regex
+  const regexEmailAddress = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/
   const { t } = useTranslation()
   const user = useSelector((state: ApplicationState) => state.user)
   const [submittable, setSubmittable] = useState(false)
   const [error, setError] = useState(false)
-  const [displayName, setDisplayName] = useState('')
+  const [displayName, setDisplayName] = useState(user?.name || '')
+  const [emailAddress, setEmailAddress] = useState('')
 
   useEffect(() => {
-    if (user) {
-      setDisplayName(user.name)
-    }
-  }, [user])
-
-  if (!user) {
-    return <Alert variant={'danger'}>User not logged in</Alert>
-  }
-
-  const changeNameField = (event: ChangeEvent<HTMLInputElement>) => {
-    setSubmittable(!regexInvalidDisplayName.test(event.target.value))
-    setDisplayName(event.target.value)
-  }
+    const displayNameValid = !regexInvalidDisplayName.test(displayName)
+    const emailAddressValid = emailAddress === '' || regexEmailAddress.test(emailAddress)
+    setSubmittable(displayNameValid && emailAddressValid)
+  }, [displayName, emailAddress])
 
   const doAsyncChange = async () => {
     await updateDisplayName(displayName)
     await getAndSetUser()
   }
 
-  const changeNameSubmit = (event: FormEvent) => {
+  const profileSubmit = (event: FormEvent) => {
     doAsyncChange().catch(() => setError(true))
     event.preventDefault()
   }
@@ -45,7 +40,10 @@ export const ProfileDisplayName: React.FC = () => {
         <Card.Title>
           <Trans i18nKey="profile.userProfile"/>
         </Card.Title>
-        <Form onSubmit={changeNameSubmit} className="text-left">
+        <ShowIf condition={!!user && !!user.photo}>
+          <img src={user?.photo} alt='profile image' className='rounded w-25'/>
+        </ShowIf>
+        <Form onSubmit={profileSubmit} className="text-left">
           <Form.Group controlId="displayName">
             <Form.Label><Trans i18nKey="profile.displayName"/></Form.Label>
             <Form.Control
@@ -54,12 +52,23 @@ export const ProfileDisplayName: React.FC = () => {
               placeholder={t('profile.displayName')}
               value={displayName}
               className="bg-dark text-white"
-              onChange={changeNameField}
-              isValid={submittable}
+              onChange={(event) => setDisplayName(event.target.value)}
               isInvalid={error}
               required
             />
             <Form.Text><Trans i18nKey="profile.displayNameInfo"/></Form.Text>
+          </Form.Group>
+          <Form.Group controlId='emailAddress'>
+            <Form.Label><Trans i18nKey='profile.emailAddress'/></Form.Label>
+            <Form.Control
+              type='email'
+              size='sm'
+              placeholder={t('profile.emailAddress')}
+              className='bg-dark text-white'
+              value={emailAddress}
+              onChange={(event) => setEmailAddress(event.target.value)}
+            />
+            <Form.Text><Trans i18nKey='profile.emailAddressInfo'/></Form.Text>
           </Form.Group>
 
           <Button

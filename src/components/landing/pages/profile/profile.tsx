@@ -6,6 +6,7 @@ import { ApplicationState } from '../../../../redux'
 import { LoginProvider } from '../../../../redux/user/types'
 import { ShowIf } from '../../../common/show-if/show-if'
 import { ProfileAccountManagement } from './settings/profile-account-management'
+import { ProfileApiTokens } from './settings/profile-api-tokens'
 import { ProfileChangePassword } from './settings/profile-change-password'
 import { ProfileDisplayName } from './settings/profile-display-name'
 
@@ -26,6 +27,7 @@ export const Profile: React.FC = () => {
           <ShowIf condition={user.provider === LoginProvider.EMAIL}>
             <ProfileChangePassword/>
           </ShowIf>
+          <ProfileApiTokens/>
           <ProfileAccountManagement/>
         </Col>
       </Row>
