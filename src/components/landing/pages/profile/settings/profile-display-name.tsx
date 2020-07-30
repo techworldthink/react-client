@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { Alert, Button, Card, Form } from 'react-bootstrap'
+import React, { FormEvent, useEffect, useState } from 'react'
+import { Button, Card, Form } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { updateDisplayName } from '../../../../../api/me'
@@ -10,7 +10,7 @@ import { ShowIf } from '../../../../common/show-if/show-if'
 export const ProfileDisplayName: React.FC = () => {
   const regexInvalidDisplayName = /^\s*$/
   // eslint-disable-next-line no-control-regex
-  const regexEmailAddress = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/
+  const regexEmailAddress = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)])$/
   const { t } = useTranslation()
   const user = useSelector((state: ApplicationState) => state.user)
   const [submittable, setSubmittable] = useState(false)
@@ -22,7 +22,7 @@ export const ProfileDisplayName: React.FC = () => {
     const displayNameValid = !regexInvalidDisplayName.test(displayName)
     const emailAddressValid = emailAddress === '' || regexEmailAddress.test(emailAddress)
     setSubmittable(displayNameValid && emailAddressValid)
-  }, [displayName, emailAddress])
+  }, [displayName, emailAddress, regexEmailAddress, regexInvalidDisplayName])
 
   const doAsyncChange = async () => {
     await updateDisplayName(displayName)
@@ -41,7 +41,7 @@ export const ProfileDisplayName: React.FC = () => {
           <Trans i18nKey="profile.userProfile"/>
         </Card.Title>
         <ShowIf condition={!!user && !!user.photo}>
-          <img src={user?.photo} alt='profile image' className='rounded w-25'/>
+          <img src={user?.photo} alt='user avatar' className='rounded w-25'/>
         </ShowIf>
         <Form onSubmit={profileSubmit} className="text-left">
           <Form.Group controlId="displayName">

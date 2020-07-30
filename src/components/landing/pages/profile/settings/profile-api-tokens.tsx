@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Form } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { Trans } from 'react-i18next'
 
 export const ProfileApiTokens: React.FC = () => {
