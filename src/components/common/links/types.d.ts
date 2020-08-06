@@ -6,6 +6,7 @@ export interface GeneralLinkProp {
   icon?: IconName
   id?: string
   className?: string
+  title?: string
 }
 
 export interface LinkWithTextProps extends GeneralLinkProp {
