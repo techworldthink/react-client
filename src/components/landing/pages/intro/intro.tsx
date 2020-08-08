@@ -11,19 +11,19 @@ const Intro: React.FC = () => {
 
   return (
     <Fragment>
-      <h1 dir='auto' className={'align-items-center d-flex justify-content-center'}>
-        <ForkAwesomeIcon icon="file-text" className={'mr-2'}/>
-        <span>CodiMD</span>
-        <Branding/>
-      </h1>
-      <p className="lead mb-5">
-        <Trans i18nKey="app.slogan"/>
-      </p>
+      <div className={'d-inline-flex h-100 align-items-center justify-content-center'}>
+        <div className={''}>
+          <img src={'/hedge.svg'} style={{ maxWidth: '800px', width: '100%' }}/>
+          <div>
+            <Branding/>
+          </div>
+          <p className="lead mb-5">
+            <Trans i18nKey="app.slogan"/>
+          </p>
+        </div>
+      </div>
 
       <CoverButtons/>
-
-      <img alt={t('landing.intro.screenShotAltText')} src={screenshot} className="img-fluid mb-5"/>
-      <FeatureLinks/>
     </Fragment>
   )
 }
