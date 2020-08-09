@@ -1,6 +1,6 @@
 {
-    "name": "CodiMD",
-    "short_name": "CodiMD",
+    "name": "HedgeDoc",
+    "short_name": "HedgeDoc",
     "icons": [
         {
             "src": "/icons/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#4caf50",
+    "background_color": "#4caf50",
     "display": "standalone"
 }
