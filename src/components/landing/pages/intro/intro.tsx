@@ -12,12 +12,12 @@ const Intro: React.FC = () => {
       <div className={'d-inline-flex h-100 align-items-center justify-content-center'}>
         <div className={''}>
           <img src={banner} style={{ maxWidth: '800px', width: '100%' }} alt={'Banner'}/>
+          <p className="lead mb-2">
+            <Trans i18nKey="app.slogan"/>
+          </p>
           <div>
             <Branding/>
           </div>
-          <p className="lead mb-5">
-            <Trans i18nKey="app.slogan"/>
-          </p>
         </div>
       </div>
 
