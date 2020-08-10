@@ -12,7 +12,7 @@ export const LandingLayout: React.FC = ({ children }) => {
       <InfoBanner/>
       <HeaderBar/>
       <div className={'d-flex flex-column justify-content-between flex-fill text-center'}>
-        <div>
+        <div className={'flex-fill d-flex justify-content-center align-items-center flex-column'}>
           {children}
         </div>
         <Footer/>
