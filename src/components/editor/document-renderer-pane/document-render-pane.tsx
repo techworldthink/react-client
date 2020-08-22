@@ -1,14 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Dropdown } from 'react-bootstrap'
 import useResizeObserver from 'use-resize-observer'
 import { TocAst } from '../../../external-types/markdown-it-toc-done-right/interface'
-import { ForkAwesomeIcon } from '../../common/fork-awesome/fork-awesome-icon'
-import { ShowIf } from '../../common/show-if/show-if'
 import { LineMarkerPosition, MarkdownRenderer } from '../../markdown-renderer/markdown-renderer'
 import { ScrollProps, ScrollState } from '../scroll/scroll-props'
 import { findLineMarks } from '../scroll/utils'
-import { TableOfContents } from '../table-of-contents/table-of-contents'
 import { YAMLMetaData } from '../yaml-metadata/yaml-metadata'
+import { DocumentExternalToc, ExternalTocViewMode } from './document-external-toc'
 
 interface DocumentRenderPaneProps {
   content: string
@@ -92,23 +89,7 @@ export const DocumentRenderPane: React.FC<DocumentRenderPaneProps & ScrollProps>
       />
 
       <div className={'col-md'}>
-        <ShowIf condition={realWidth >= 1280 && !!tocAst}>
-          <TableOfContents ast={tocAst as TocAst} className={'position-fixed'}/>
-        </ShowIf>
-        <ShowIf condition={realWidth < 1280 && !!tocAst}>
-          <div className={'markdown-toc-sidebar-button'}>
-            <Dropdown drop={'up'}>
-              <Dropdown.Toggle id="toc-overlay-button" variant={'secondary'} className={'no-arrow'}>
-                <ForkAwesomeIcon icon={'bars'}/>
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <div className={'p-2'}>
-                  <TableOfContents ast={tocAst as TocAst}/>
-                </div>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-        </ShowIf>
+        <DocumentExternalToc tocAst={tocAst} viewMode={realWidth >= 1280 ? ExternalTocViewMode.SIDEBAR : ExternalTocViewMode.BUTTON}/>
       </div>
     </div>
   )

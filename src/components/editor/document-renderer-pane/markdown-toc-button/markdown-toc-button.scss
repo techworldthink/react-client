@@ -1,0 +1,11 @@
+.markdown-toc-button {
+  position: fixed;
+  right: 40px;
+  bottom: 30px;
+
+  & > .dropup {
+    position: sticky;
+    bottom: 20px;
+    right: 0;
+  }
+}
