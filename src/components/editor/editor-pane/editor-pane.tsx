@@ -24,11 +24,13 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Controlled as ControlledCodeMirror } from 'react-codemirror2'
 import { useTranslation } from 'react-i18next'
 import './editor-pane.scss'
+import { ShowIf } from '../../common/show-if/show-if'
 import { ScrollProps, ScrollState } from '../scroll/scroll-props'
 import { generateEmojiHints, emojiWordRegex, findWordAtCursor } from './hints/emoji'
 import { defaultKeyMap } from './key-map'
 import { createStatusInfo, defaultState, StatusBar, StatusBarInfo } from './status-bar/status-bar'
 import { ToolBar } from './tool-bar/tool-bar'
+import { AdditionalMarker } from './additional-marker/additional-marker'
 
 export interface EditorPaneProps {
   onContentChange: (content: string) => void
@@ -152,6 +154,10 @@ export const EditorPane: React.FC<EditorPaneProps & ScrollProps> = ({ onContentC
         onBeforeChange={onBeforeChange}
         onScroll={onEditorScroll}
       />
+      <ShowIf condition={!!editor}>
+        <AdditionalMarker editor={editor as Editor} position={{ ch: 1, line: 2 }}/>
+      </ShowIf>
+
       <StatusBar {...statusBarInfo} />
     </div>
   )

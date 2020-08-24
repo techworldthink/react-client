@@ -1,0 +1,40 @@
+.additional-marker {
+  .cursor {
+    border-left: solid red 3px;
+    animation: blink 1s infinite;
+    padding: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+  .nametag {
+    top: -66%;
+    position: relative;
+    background: black;
+    left: 0;
+    color: white;
+    padding: 3px 5px
+  }
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 100%
+  }
+
+  49% {
+    opacity: 100%
+  }
+
+  50% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 0
+  }
+}
