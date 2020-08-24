@@ -155,7 +155,7 @@ export const EditorPane: React.FC<EditorPaneProps & ScrollProps> = ({ onContentC
         onScroll={onEditorScroll}
       />
       <ShowIf condition={!!editor}>
-        <AdditionalMarker editor={editor as Editor} position={{ ch: 1, line: 2 }}/>
+        <AdditionalMarker editor={editor as Editor} position={{ ch: 1, line: 2 }} color={'0000ff'} name={'asd'} />
       </ShowIf>
 
       <StatusBar {...statusBarInfo} />
