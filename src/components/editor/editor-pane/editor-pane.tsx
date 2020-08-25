@@ -105,6 +105,7 @@ export const EditorPane: React.FC<EditorPaneProps & ScrollProps> = ({ onContentC
     setEditor(mountedEditor)
   }, [])
   const onCursorActivity = useCallback((editorWithActivity) => {
+    setCursorPosition({ line: editorWithActivity.getCursor().line, ch: editorWithActivity.getCursor().ch + 1 })
     setStatusBarInfo(createStatusInfo(editorWithActivity))
   }, [])
   const codeMirrorOptions: EditorConfiguration = useMemo<EditorConfiguration>(() => ({
@@ -137,6 +138,8 @@ export const EditorPane: React.FC<EditorPaneProps & ScrollProps> = ({ onContentC
     placeholder: t('editor.placeholder')
   }), [t, editorPreferences])
 
+  const [cursorPosition, setCursorPosition] = useState<CodeMirror.Position>(() => ({ ch: 0, line: 0 }))
+
   return (
     <div className={'d-flex flex-column h-100'} onMouseEnter={onMakeScrollSource}>
       <ToolBar
@@ -155,7 +158,7 @@ export const EditorPane: React.FC<EditorPaneProps & ScrollProps> = ({ onContentC
         onScroll={onEditorScroll}
       />
       <ShowIf condition={!!editor}>
-        <AdditionalMarker editor={editor as Editor} position={{ ch: 1, line: 2 }} color={'0000ff'} name={'asd'} />
+        <AdditionalMarker editor={editor as Editor} position={cursorPosition} color={'0000ff'} name={'asd'} />
       </ShowIf>
 
       <StatusBar {...statusBarInfo} />

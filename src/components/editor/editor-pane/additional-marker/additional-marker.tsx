@@ -33,8 +33,10 @@ export const AdditionalMarker: React.FC<AdditionalMarkerProps> = ({ editor, posi
   }, [position, reset])
 
   const innerMark = <Fragment>
+    &#65279;
     <span className={'cursor'} style={{ borderColor: `#${color}` }}/>
     <span className={`nametag ${show ? 'show' : ''}`} style={{ backgroundColor: `#${color}` }}>{name}</span>
+    &#65279;
   </Fragment>
 
   return ReactDOM.createPortal(innerMark, marker)
