@@ -9,12 +9,21 @@
     height: 100%;
   }
   .nametag {
-    top: -66%;
-    position: relative;
     background: black;
     left: 0;
     color: white;
-    padding: 3px 5px
+    height: 100%;
+    padding: 3px 5px;
+    user-select: none;
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.25s;
+    &.left {
+      left: -100%
+    }
+    &.show {
+      opacity: 1
+    }
   }
   height: 100%;
   position: absolute;
