@@ -1,9 +1,11 @@
 body.dark {
   @import "dark";
   @import "../../node_modules/bootstrap/scss/bootstrap";
+  background-color: $dark;
 }
 body:not(.dark) {
   @import "../../node_modules/bootstrap/scss/bootstrap";
+  background-color: darken($dark, 8%);
 }
 @import '../../node_modules/react-bootstrap-typeahead/css/Typeahead';
 @import "fonts/source-code-pro/source-code-pro";
@@ -15,7 +17,6 @@ html {
 
 body {
   min-height: 100%;
-  background-color: darken($dark, 8%);
   font-family: "Source Sans Pro", Helvetica, Arial, twemoji, sans-serif;
 }
 
