@@ -1,5 +1,10 @@
-@import "dark";
-@import "../../node_modules/bootstrap/scss/bootstrap";
+body.dark {
+  @import "dark";
+  @import "../../node_modules/bootstrap/scss/bootstrap";
+}
+body:not(.dark) {
+  @import "../../node_modules/bootstrap/scss/bootstrap";
+}
 @import '../../node_modules/react-bootstrap-typeahead/css/Typeahead';
 @import "fonts/source-code-pro/source-code-pro";
 @import "fonts/twemoji/twemoji";
