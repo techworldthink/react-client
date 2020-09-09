@@ -43,11 +43,3 @@ export const determineDarkModeBrowserSetting = (): DarkModeConfig | undefined =>
     return undefined
   }
 }
-
-export const updateBodyClass = (darkModeConfig: DarkModeConfig): void => {
-  if (darkModeConfig.darkMode) {
-    window.document.body.classList.add('dark')
-  } else {
-    window.document.body.classList.remove('dark')
-  }
-}

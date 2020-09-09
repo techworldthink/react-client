@@ -1,10 +1,15 @@
 .btn-toolbar {
   body.dark &, & {
-    border: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
 
     .btn {
       padding: 0.1875rem 0.5rem;
       min-width: 30px;
+
+      body.dark & {
+        @import '../../../../style/dark';
+        color: $cyan;
+      }
     }
 
     .btn-group:not(:last-of-type)::after {
