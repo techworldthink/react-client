@@ -19,7 +19,7 @@ const DarkModeButton: React.FC = () => {
       <ToggleButton
         title={ darkModeEnabled ? t('editor.darkMode.switchToLight') : t('editor.darkMode.switchToDark')}
         variant={ darkModeEnabled ? 'secondary' : 'light' }
-        className={ darkModeEnabled ? 'text-white' : 'text-secondary' }
+        className={ darkModeEnabled ? 'text-light' : 'text-secondary' }
         onChange={toggleDarkMode} value={'dark'}
       >
         {darkModeEnabled
