@@ -23,7 +23,7 @@ const DarkModeButton: React.FC = () => {
         onChange={toggleDarkMode} value={'dark'}
       >
         {darkModeEnabled
-          ? <ForkAwesomeIcon icon="sun"/>
+          ? <ForkAwesomeIcon icon="sun-o"/>
           : <ForkAwesomeIcon icon="moon"/>
         }
       </ToggleButton>
