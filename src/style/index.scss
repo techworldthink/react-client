@@ -1,15 +1,21 @@
+
+
+$blue:    #337ab7 !default;
+$cyan:    #5EB7E0 !default;
+
 body.dark {
   @import "dark";
   @import "../../node_modules/bootstrap/scss/bootstrap";
-  background-color: $dark;
+  color: $dark;
 }
-body:not(.dark) {
-  @import "../../node_modules/bootstrap/scss/bootstrap";
-  background-color: darken($dark, 8%);
-}
+@import "../../node_modules/bootstrap/scss/bootstrap";
 @import '../../node_modules/react-bootstrap-typeahead/css/Typeahead';
 @import "fonts/source-code-pro/source-code-pro";
 @import "fonts/twemoji/twemoji";
+
+body {
+  background-color: darken($dark, 8%);
+}
 
 html {
   height: 100%;

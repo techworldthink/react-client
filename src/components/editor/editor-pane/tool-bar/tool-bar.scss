@@ -1,11 +1,18 @@
 .btn-toolbar {
-  border: 1px solid #ededed;
+  body.dark &, & {
+    border: 1px solid #ededed;
 
-  .btn-group:not(:last-of-type)::after {
-    background-color: #e2e6ea;
-    width: 2px;
-    padding: 0.25rem 0;
-    content: ' ';
-    margin-left: 0.5rem;
+    .btn {
+      padding: 0.1875rem 0.5rem;
+      min-width: 30px;
+    }
+
+    .btn-group:not(:last-of-type)::after {
+      background-color: #e2e6ea;
+      width: 2px;
+      padding: 0.25rem 0;
+      content: ' ';
+      margin-left: 0.5rem;
+    }
   }
 }

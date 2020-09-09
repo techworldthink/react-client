@@ -14,8 +14,10 @@
 }
 
 .dropup .dropdown-toggle, .dropdown-toggle {
-  &.no-arrow::after {
-    content: initial;
+  body.dark &, & {
+    &.no-arrow::after {
+      content: initial;
+    }
   }
 }
 
