@@ -10,6 +10,12 @@ body.dark {
     overflow-x: hidden;
     overflow-y: auto;
   }
+
+  & .form-control, .form-control:focus, .form-control[readonly] {
+    background-color: $black;
+    color: $gray-400;
+  }
+
 }
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import '../../node_modules/react-bootstrap-typeahead/css/Typeahead';
