@@ -1,6 +1,4 @@
-$blue:    #337ab7 !default;
-$cyan:    #5EB7E0 !default;
-
+@import './light';
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import '../../node_modules/react-bootstrap-typeahead/css/Typeahead';
 @import "fonts/source-code-pro/source-code-pro";

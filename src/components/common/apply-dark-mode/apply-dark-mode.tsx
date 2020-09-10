@@ -14,7 +14,7 @@ export const ApplyDarkMode: React.FC = () => {
     return () => {
       window.document.body.classList.remove('dark')
     }
-  })
+  }, [darkModeActivated])
 
   return null
 }
