@@ -44,5 +44,5 @@ export const FlowChart: React.FC<FlowChartProps> = ({ code }) => {
       </Alert>
     )
   }
-  return <div ref={diagramRef} className={'text-center'}/>
+  return <div ref={diagramRef} className={'text-center invert-colors'}/>
 }
