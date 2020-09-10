@@ -1,42 +1,54 @@
 .markdown-body {
-  @import '../../../../../../node_modules/highlight.js/styles/github-gist.css';
+  @import '../../../../../../node_modules/highlight.js/styles/github';
+
+  body.dark & {
+    @import '../../../../../../node_modules/highlight.js/styles/tomorrow-night';
+  }
 }
 
 .markdown-body code.hljs {
+  body.dark &, & {
 
-  padding: 16px;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+    background-color: rgba(27, 31, 35, .05);
+    body.dark & {
+      background-color: rgb(27, 31, 35);
+    }
 
-  &.showGutter {
-    .linenumber {
-      position: relative;
-      cursor: default;
-      z-index: 4;
-      padding: 0 8px 0 0;
-      min-width: 20px;
-      box-sizing: content-box;
-      color: #afafaf;
-      border-right: 3px solid #6ce26c;
-      flex-direction: column;
-      overflow: hidden;
-      user-select: none;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
 
-      display: flex;
-      align-items: flex-end;
+    &.showGutter {
+      .linenumber {
+        position: relative;
+        cursor: default;
+        z-index: 4;
+        padding: 0 8px 0 0;
+        min-width: 20px;
+        box-sizing: content-box;
+        color: #afafaf;
+        border-right: 3px solid #6ce26c;
+        flex-direction: column;
+        overflow: hidden;
+        user-select: none;
 
-      &:before {
-        content: attr(data-line-number);
+        display: flex;
+        align-items: flex-end;
+
+        &:before {
+          content: attr(data-line-number);
+        }
       }
     }
-  }
 
-  &.showGutter .codeline {
-    margin: 0 0 0 16px;
-  }
+    &.showGutter .codeline {
+      margin: 0 0 0 16px;
+    }
 
-  &.wrapLines .codeline {
-    white-space: pre-wrap;
+    &.wrapLines .codeline {
+      white-space: pre-wrap;
+    }
+
   }
 
 }
