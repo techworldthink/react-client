@@ -2,29 +2,12 @@
   border-bottom: 1px solid #ededed;
   border-top: 1px solid #ededed;
 
-
-  body.dark & {
-    @import '../../../../style/dark';
-    border-bottom: 2px solid $cyan;
-    border-top: 2px solid $cyan;
-  }
-
   .btn {
     padding: 0.1875rem 0.5rem;
     min-width: 30px;
-
-    body.dark & {
-      @import '../../../../style/dark';
-      color: $cyan;
-    }
   }
 
   .btn-group:not(:last-of-type)::after {
-    body.dark & {
-      @import '../../../../style/dark';
-      background-color: $cyan;
-    }
-
     background-color: #e2e6ea;
     width: 2px;
     padding: 0.25rem 0;
