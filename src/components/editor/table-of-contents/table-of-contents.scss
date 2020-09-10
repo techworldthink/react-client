@@ -54,7 +54,6 @@
 }
 
 .markdown-toc-sidebar-button {
-  body.dark &, & {
     position: fixed;
     right: 40px;
     bottom: 30px;
@@ -64,5 +63,4 @@
       bottom: 20px;
       right: 0;
     }
-  }
 }
