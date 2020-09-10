@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState, Suspense, useMemo } from 'react'
 import { Dropdown } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next'
 import useResizeObserver from 'use-resize-observer'
 import { TocAst } from '../../../external-types/markdown-it-toc-done-right/interface'
 import { ForkAwesomeIcon } from '../../common/fork-awesome/fork-awesome-icon'
 import { ShowIf } from '../../common/show-if/show-if'
 import { LineMarkerPosition } from '../../markdown-renderer/types'
-import { FullMarkdownRenderer } from '../../markdown-renderer/full-markdown-renderer'
 import { ScrollProps, ScrollState } from '../scroll/scroll-props'
 import { findLineMarks } from '../scroll/utils'
 import { TableOfContents } from '../table-of-contents/table-of-contents'
@@ -29,6 +29,7 @@ export const DocumentRenderPane: React.FC<DocumentRenderPaneProps & ScrollProps>
   scrollState,
   wide
 }) => {
+  useTranslation()
   const [tocAst, setTocAst] = useState<TocAst>()
   const renderer = useRef<HTMLDivElement>(null)
   const { width } = useResizeObserver({ ref: renderer })
@@ -45,6 +46,10 @@ export const DocumentRenderPane: React.FC<DocumentRenderPaneProps & ScrollProps>
     renderer.current.scrollTo({
       top: targetPosition
     })
+  }, [])
+
+  const FullMarkdownRenderer = useMemo(() => {
+    return React.lazy(() => import('../../bundles/full-renderer'))
   }, [])
 
   useEffect(() => {
@@ -110,16 +115,22 @@ export const DocumentRenderPane: React.FC<DocumentRenderPaneProps & ScrollProps>
       ref={renderer} onScroll={userScroll} onMouseEnter={onMakeScrollSource}>
       <div className={'col-md'}/>
       <div className={'bg-light flex-fill'}>
-        <FullMarkdownRenderer
-          className={'flex-fill mb-3'}
-          content={content}
-          onFirstHeadingChange={onFirstHeadingChange}
-          onLineMarkerPositionChanged={setLineMarks}
-          onMetaDataChange={onMetadataChange}
-          onTaskCheckedChange={onTaskCheckedChange}
-          onTocChange={(tocAst) => setTocAst(tocAst)}
-          wide={wide}
-        />
+        <Suspense fallback={
+          <div className={'text-center'}>
+            <Trans i18nKey={'editor.loadingRenderer'}/>
+          </div>
+        }>
+          <FullMarkdownRenderer
+            className={'flex-fill mb-3'}
+            content={content}
+            onFirstHeadingChange={onFirstHeadingChange}
+            onLineMarkerPositionChanged={setLineMarks}
+            onMetaDataChange={onMetadataChange}
+            onTaskCheckedChange={onTaskCheckedChange}
+            onTocChange={(tocAst) => setTocAst(tocAst)}
+            wide={wide}
+          />
+        </Suspense>
       </div>
 
       <div className={'col-md'}>
