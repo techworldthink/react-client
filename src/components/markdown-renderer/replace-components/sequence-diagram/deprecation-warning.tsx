@@ -10,7 +10,7 @@ export const DeprecationWarning: React.FC = () => {
     <Alert className={'mt-2'} variant={'warning'}>
       <Trans i18nKey={'renderer.sequence.deprecationWarning'}/>
       &nbsp;
-      <TranslatedExternalLink i18nKey={'common.why'} className={'text-dark'} href={'https://community.codimd.org/t/frequently-asked-questions/190'}/>
+      <TranslatedExternalLink i18nKey={'common.why'} className={'text-primary'} href={'https://community.codimd.org/t/frequently-asked-questions/190'}/>
     </Alert>
   )
 }
