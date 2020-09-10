@@ -6,7 +6,7 @@
   .btn {
     svg g {
       @import "../../../../style/light.scss";
-      fill: $dark;
+      fill: $secondary;
     }
 
     &.active, &:hover {
@@ -19,7 +19,7 @@
     body.dark & {
       svg g {
         @import "../../../../style/dark.scss";
-        fill: $dark;
+        fill: $secondary;
       }
 
       &.active, &:hover {
