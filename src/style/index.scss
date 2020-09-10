@@ -1,22 +1,6 @@
 $blue:    #337ab7 !default;
 $cyan:    #5EB7E0 !default;
 
-body.dark {
-  @import "dark";
-  @import "../../node_modules/bootstrap/scss/bootstrap";
-  color: $dark;
-
-  &.modal-open .modal {
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
-  & .form-control, .form-control:focus, .form-control[readonly] {
-    background-color: $gray-900;
-    color: $gray-400;
-  }
-
-}
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import '../../node_modules/react-bootstrap-typeahead/css/Typeahead';
 @import "fonts/source-code-pro/source-code-pro";
