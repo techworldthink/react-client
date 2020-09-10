@@ -48,9 +48,7 @@ export const DocumentRenderPane: React.FC<DocumentRenderPaneProps & ScrollProps>
     })
   }, [])
 
-  const FullMarkdownRenderer = useMemo(() => {
-    return React.lazy(() => import('../../bundles/full-renderer'))
-  }, [])
+  const FullMarkdownRenderer = useMemo(() => React.lazy(() => import('../../bundles/full-renderer')), [])
 
   useEffect(() => {
     if (!renderer.current || !lineMarks || lineMarks.length === 0 || !scrollState) {
