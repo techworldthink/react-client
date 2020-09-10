@@ -4,6 +4,10 @@
 @import "fonts/source-code-pro/source-code-pro";
 @import "fonts/twemoji/twemoji";
 
+.text-black, body.dark .text-black {
+  color: $black;
+}
+
 body {
   background-color: darken($dark, 8%);
 }
